@@ -45,14 +45,10 @@ public class BinaryJedisque extends redis.clients.jedis.Connection {
                 URI uri = uris.get(index);
                 setHost(uri.getHost());
                 setPort(uri.getPort());
-                if (timeout > 0) {
-                    super.connect();
-                } else {
 
-                    super.setConnectionTimeout(0);
-                    super.setSoTimeout(0);
-                    super.connect();
-                }
+                super.setSoTimeout(timeout);
+                super.connect();
+
             } catch (JedisConnectionException e) {
                 uris.remove(index);
             }
@@ -73,6 +69,5 @@ public class BinaryJedisque extends redis.clients.jedis.Connection {
         sendCommand(Command.ADDJOB, addJobCommand.toArray(new byte[addJobCommand.size()][]));
         return getBulkReply();
     }
-
 
 }
