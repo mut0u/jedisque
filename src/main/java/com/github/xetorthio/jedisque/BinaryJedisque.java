@@ -31,7 +31,10 @@ public class BinaryJedisque extends redis.clients.jedis.Connection {
     public BinaryJedisque(URI... uris) {
         this.uris.addAll(Arrays.asList(uris));
     }
-
+    public BinaryJedisque(int timeout, URI... uris) {
+        this.uris.addAll(Arrays.asList(uris));
+        this.timeout = timeout;
+    }
 
     @Override
     public void connect() {

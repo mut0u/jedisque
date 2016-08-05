@@ -21,6 +21,9 @@ public class Jedisque extends BinaryJedisque {
 		super(uris);
 	}
 
+	public Jedisque(int timeout, URI... uris) {
+		super(timeout, uris);
+	}
 	public String addJob(String queueName, String job, long mstimeout) {
 		return addJob(SafeEncoder.encode(queueName), SafeEncoder.encode(job), mstimeout);
 	}
